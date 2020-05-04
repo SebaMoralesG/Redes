@@ -104,6 +104,3 @@ end
 # end
 Y
 B
-Binv =inv(B)
-C = [1 2 3;4 9 6;5 8 9]
-inv(C)
