@@ -116,7 +116,6 @@ VaAC = [-2.18026e-28 0.0318994 0.0448906 -0.0514524  -0.0809507 -0.00659958 -0.0
 VaDC = [0 0.044 0.059 -0.060 -0.096 -0.003 -0.057 -0.022 -0.118]
 
 
-
 resultAC1 = run_ac_opf("system2.m",Ipopt.Optimizer)
 resultDC1 = run_dc_opf("system2.m",Ipopt.Optimizer)
 print_summary(resultAC1["solution"])
@@ -133,7 +132,7 @@ println("Flujo potencias Caso1")
 
 for i in 1:9
     for j in 1:9
-        Flac1[i,j] = VmAC[i]*VmAC[j]*(G[i,j]*cos(VaAC[i]-VaAC[j])+B[i,j]*sin(VaAC[i]-VaAC[j]))
+        Flac1[i,j] = VmAC[i]*VmAC[j]*sin(VaAC[i]-VaAC[j])/X[i,j]
         Fqac1[i,j] = VmAC[i]*VmAC[j]*(G[i,j]*sin(VaAC[i]-VaAC[j])-B[i,j]*cos(VaAC[i]-VaAC[j]))
         Fldc1[i,j] = (VaDC[i]-VaDC[j])/X[i,j]
     end
