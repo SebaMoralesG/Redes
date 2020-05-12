@@ -1,5 +1,7 @@
 ### Load packages ###
-using JuMP, GLPK
+Pkg.add("Taro")
+
+using JuMP, GLPK, Taro
 
 ### Function for solving unit commitment ###
 function UnitCommitmentFunction(Data)
@@ -39,6 +41,11 @@ function UnitCommitmentFunction(Data)
     JuMP.optimize!(model)
 
     return [model,x,u,v,Pg]
+end
+
+function readExcel(Filename)
+    Taro.init()
+    df = Taro.readxl()
 end
 
 ### Unit commitment example ###
